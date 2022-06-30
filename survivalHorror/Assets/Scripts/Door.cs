@@ -25,6 +25,8 @@ public class Door : MonoBehaviour
 
     private Coroutine AnimationCoroutine;
 
+   
+
     private void Awake()
     {
         StartRotation = transform.rotation.eulerAngles;

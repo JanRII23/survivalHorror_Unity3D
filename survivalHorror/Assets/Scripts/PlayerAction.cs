@@ -12,6 +12,10 @@ public class PlayerAction : MonoBehaviour
     [SerializeField]
     private LayerMask UseLayers;
 
+    public AudioSource WindSound;
+
+    /*    public GameObject ExtraCross;
+    */
     public void OnUse()
     {
         if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
@@ -37,11 +41,16 @@ public class PlayerAction : MonoBehaviour
         {
             if (door.IsOpen)
             {
-                UseText.SetText("Close \"E\"");
+/*                ExtraCross.SetActive(true);
+*/                UseText.SetText("Close \"E\"");
+                  /*WindSound.Play();*/
+
             }
             else
             {
-                UseText.SetText("Open \"E\"");
+/*                ExtraCross.SetActive(true);
+*/                UseText.SetText("Open \"E\"");
+                  WindSound.Play();
             }
             UseText.gameObject.SetActive(true);
             UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.01f;
@@ -50,6 +59,9 @@ public class PlayerAction : MonoBehaviour
         else
         {
             UseText.gameObject.SetActive(false);
-        }
+       
+/*            ExtraCross.SetActive(false);
+ *            
+*/        }
     }
 }
