@@ -13,6 +13,7 @@ public class PlayerAction : MonoBehaviour
     private LayerMask UseLayers;
 
     public AudioSource WindSound;
+    public float TheDistance;
 
     /*    public GameObject ExtraCross;
     */
@@ -36,21 +37,26 @@ public class PlayerAction : MonoBehaviour
 
     private void Update()
     {
+
+        TheDistance = PlayerCasting.DistanceFromTarget;
+
         if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers)
             && hit.collider.TryGetComponent<Door>(out Door door))
         {
-            if (door.IsOpen)
+            if (door.IsOpen && TheDistance <= 2)
             {
 /*                ExtraCross.SetActive(true);
 */                UseText.SetText("Close \"E\"");
-                  /*WindSound.Play();*/
+                /*WindSound.Play();*/
+                  WindSound.Play();
 
             }
-            else
+            else if (!door.IsOpen && TheDistance <= 2)
             {
 /*                ExtraCross.SetActive(true);
 */                UseText.SetText("Open \"E\"");
-                  WindSound.Play();
+                  WindSound.Stop();
+                    
             }
             UseText.gameObject.SetActive(true);
             UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.01f;
