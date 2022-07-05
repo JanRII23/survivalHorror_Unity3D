@@ -47,8 +47,8 @@ public class Door : MonoBehaviour
             if (IsRotatingDoor)
             {
                 float dot = Vector3.Dot(Forward, (UserPosition - transform.position).normalized);
-                Debug.Log($"Dot: {dot.ToString("N3")}");
-                AnimationCoroutine = StartCoroutine(DoRotationOpen(dot));
+/*                Debug.Log($"Dot: {dot.ToString("N3")}");
+*/                AnimationCoroutine = StartCoroutine(DoRotationOpen(dot));
             }
             else
             {

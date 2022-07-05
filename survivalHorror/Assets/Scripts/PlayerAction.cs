@@ -48,14 +48,14 @@ public class PlayerAction : MonoBehaviour
 /*                ExtraCross.SetActive(true);
 */                UseText.SetText("Close \"E\"");
                 /*WindSound.Play();*/
-                  WindSound.Play();
+
 
             }
             else if (!door.IsOpen && TheDistance <= 2)
             {
 /*                ExtraCross.SetActive(true);
 */                UseText.SetText("Open \"E\"");
-                  WindSound.Stop();
+
                     
             }
             UseText.gameObject.SetActive(true);
