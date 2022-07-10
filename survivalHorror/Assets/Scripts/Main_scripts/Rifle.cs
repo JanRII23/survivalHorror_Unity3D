@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rifle : MonoBehaviour
 {
+    //for sure i can add some more animations and camera to be detached like if i rotate the right analog
     
     [Header("Rifle Things")]
     public Camera cam;
@@ -11,6 +12,7 @@ public class Rifle : MonoBehaviour
     public float shootingRange = 100f;
     public float fireCharge = 15f;
     private float nextTimeToShoot = 0f;
+    public Animator animator;
     public PlayerScript player;
     public Transform hand;
 
@@ -48,9 +50,31 @@ public class Rifle : MonoBehaviour
 
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToShoot) //getbuttondown is single fire
         {
+            animator.SetBool("Fire", true);
+            animator.SetBool("Idle", false);
             nextTimeToShoot = Time.time + 1f / fireCharge;
             Shoot();
         }
+        else if (Input.GetButton("Fire1") && Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("FireWalk", true);
+        }
+        else if (Input.GetButton("Fire2") && Input.GetButton("Fire1"))
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("IdleAim", true);
+            animator.SetBool("FireWalk", true);
+            animator.SetBool("Walk", true);
+            animator.SetBool("Reloading", false);
+        }
+        else
+        {
+            animator.SetBool("Fire", false);
+            animator.SetBool("Idle", true);
+            animator.SetBool("FireWalk", false);
+        }
+        
     }
     private void Shoot()
     {
@@ -91,10 +115,10 @@ public class Rifle : MonoBehaviour
         player.playerSprint = 0f;
         setReloading = true;
         Debug.Log("Reloading...");
-        //play anim
+        animator.SetBool("Reloading", true);
         //play reload sound
         yield return new WaitForSeconds(reloadingTime);
-        //play anim
+        animator.SetBool("Reloading", false);
         presentAmmunition = maximumAmmunition;
         player.playerSpeed = 1.9f;
         player.playerSprint = 3;
