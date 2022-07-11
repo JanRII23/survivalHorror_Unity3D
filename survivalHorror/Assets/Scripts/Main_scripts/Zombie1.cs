@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Zombie1 : MonoBehaviour
 {
     //just refine the gore damage effect later on that times it to the animation
-    //fix the stop chasing later
+    //fix the stop chasing later, possible fix is to reset the walking points
 
     [Header("Zombie Health and Damage")]
     private float zombieHealth = 100f;

@@ -23,6 +23,7 @@ public class PlayerPunch : MonoBehaviour
 
             ObjectTohit objectHit = hitInfo.transform.GetComponent<ObjectTohit>();
             Zombie1 zombie1 = hitInfo.transform.GetComponent<Zombie1>();
+            Zombie2 zombie2 = hitInfo.transform.GetComponent<Zombie2>();
             if (objectHit != null)
             {
                 objectHit.ObjectHitDamage(giveDamageOf);
@@ -34,6 +35,10 @@ public class PlayerPunch : MonoBehaviour
                 zombie1.zombieHitDamage(giveDamageOf);
                /* GameObject goreFffectGo = Instantiate(GoreEffect, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 Destroy(goreFffectGo, 1f);*/
+            }
+            else if (zombie2 != null)
+            {
+                zombie2.zombieHitDamage(giveDamageOf);
             }
         }
     }
