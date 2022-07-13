@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rifle : MonoBehaviour
 {
     //for sure i can add some more animations and camera to be detached like if i rotate the right analog
+    //more hit points
     
     [Header("Rifle Things")]
     public Camera cam;
