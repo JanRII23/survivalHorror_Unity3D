@@ -7,7 +7,7 @@ public class PlayerScript : MonoBehaviour
     //Things to keep in mind later on that in certain maps i Need to change the layer to surface to jump off it, but i also need to add a falling/landing animation
     //running jump needs some work
 
-    //This script takes care of moving logic and camera
+    //This script takes care of moving logic and camera && improve blood damage canvas
 
     [Header("Player Movement")]
     public float playerSpeed = 2.2f;
@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Player Health Things")]
     private float playerHealth = 120f;
     public float presentHealth;
+    public GameObject playerDamage;
 
     [Header("Player Script Cameras")]
     public Transform playerCamera;
@@ -144,6 +145,7 @@ public class PlayerScript : MonoBehaviour
     public void playerHitDamage(float takeDamage)
     {
         presentHealth -= takeDamage;
+        StartCoroutine(PlayerDamage());
 
         if(presentHealth <= 0)
         {
@@ -155,5 +157,12 @@ public class PlayerScript : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Object.Destroy(gameObject, 1.0f);
+    }
+
+    IEnumerator PlayerDamage()
+    {
+        playerDamage.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        playerDamage.SetActive(false);
     }
 }
