@@ -16,6 +16,7 @@ public class Rifle : MonoBehaviour
     public Animator animator;
     public PlayerScript player;
     public Transform hand;
+    public GameObject rifleUI;
 
     [Header("Rifle Ammunition and Shooting")]
     private int maximumAmmunition = 32;
@@ -33,7 +34,9 @@ public class Rifle : MonoBehaviour
     private void Awake()
     {
         transform.SetParent(hand);
+        rifleUI.SetActive(true);
         presentAmmunition = maximumAmmunition;
+        
     }
 
 
@@ -92,6 +95,9 @@ public class Rifle : MonoBehaviour
         {
             mag--;
         }
+
+        AmmoCount.occurence.UpdateAmmoText(presentAmmunition);
+        AmmoCount.occurence.UpdateMagText(mag);
 
         muzzleSpark.Play();
         RaycastHit hitInfo;

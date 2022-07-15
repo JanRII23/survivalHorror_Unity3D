@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     [Header("Player Script Cameras")]
     public Transform playerCamera;
+    public GameObject EndGameMenuUI;
 
     [Header("Player Animator and Gravity")]
     public CharacterController cC;
@@ -159,6 +160,7 @@ public class PlayerScript : MonoBehaviour
 
     private void PlayerDie()
     {
+        EndGameMenuUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Object.Destroy(gameObject, 1.0f);
     }

@@ -12,6 +12,7 @@ public class RiflePickUp : MonoBehaviour
     public GameObject PlayerRifle;
     public GameObject PickUpRifle;
     public PlayerPunch playerPunch;
+    public GameObject rifleUI;
 
     [Header("Rifle Assign")]
     public PlayerScript player;
@@ -23,7 +24,7 @@ public class RiflePickUp : MonoBehaviour
     private void Awake()
     {
         PlayerRifle.SetActive(false);
-
+        rifleUI.SetActive(false);
     }
 
     private void Update()
