@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ObjectivesComplete : MonoBehaviour
 {
 
+    //make the scene ambient and with fog also add spotlights for the objectives
+
     [Header("Objectives to Complete")]
     public Text objective1;
     public Text objective2;
@@ -17,7 +19,9 @@ public class ObjectivesComplete : MonoBehaviour
     private void Awake()
     {
         occurence = this;
+        Debug.Log("This gameobject is: " + occurence);
     }
+
 
 
     public void GetObjectivesDone(bool obj1, bool obj2, bool obj3, bool obj4)

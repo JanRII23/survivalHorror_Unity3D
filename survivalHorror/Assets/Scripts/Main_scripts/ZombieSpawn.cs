@@ -10,7 +10,7 @@ public class ZombieSpawn : MonoBehaviour
     [Header("ZombieSpawn Var")]
     public GameObject zombiePrefab;
     public Transform zombieSpawnPosition;
- /*   public GameObject dangerZone;*/
+    public GameObject dangerZone1;
     private float repeatCycle = 1f;
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +18,7 @@ public class ZombieSpawn : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             InvokeRepeating("EnemySpawner", 1f, repeatCycle);
+            StartCoroutine(dangerZoneTimer());
             Destroy(gameObject, 10f);
             gameObject.GetComponent<BoxCollider>().enabled = false;
         }
@@ -26,5 +27,12 @@ public class ZombieSpawn : MonoBehaviour
     void EnemySpawner()
     {
         Instantiate(zombiePrefab, zombieSpawnPosition.position, zombieSpawnPosition.rotation);
+    }
+
+    IEnumerator dangerZoneTimer()
+    {
+        dangerZone1.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        dangerZone1.SetActive(false);
     }
 }

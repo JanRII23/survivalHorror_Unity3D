@@ -21,11 +21,14 @@ public class RiflePickUp : MonoBehaviour
     private float nextTimeToPunch = 0f;
     public float punchCharge = 15f;
 
+    public ObjectivesComplete temp; //it seems to be working but idk
+
     private void Awake()
     {
         PlayerRifle.SetActive(false);
         rifleUI.SetActive(false);
     }
+
 
     private void Update()
     {
@@ -53,8 +56,12 @@ public class RiflePickUp : MonoBehaviour
                 //sound
 
                 //objective
-                ObjectivesComplete.occurence.GetObjectivesDone(true, false, false, false);
+
+/*                ObjectivesComplete.occurence.GetObjectivesDone(true, false, false, false);
+*/                temp.GetObjectivesDone(true, false, false, false);
             }
+
+
         }
     }
 }
