@@ -53,6 +53,7 @@ public class RiflePickUp : MonoBehaviour
                 //sound
 
                 //objective
+                ObjectivesComplete.occurence.GetObjectivesDone(true, false, false, false);
             }
         }
     }

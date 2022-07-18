@@ -65,6 +65,8 @@ public class VehicleController : MonoBehaviour
                 radius = 5000f;
 
                 //Objective Complete
+                ObjectivesComplete.occurence.GetObjectivesDone(true, true, true, false);
+
             }else if (Input.GetKeyDown(KeyCode.G))
             {
                 player.transform.position = vehicleDoor.transform.position;
