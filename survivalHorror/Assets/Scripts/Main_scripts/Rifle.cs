@@ -33,14 +33,17 @@ public class Rifle : MonoBehaviour
 
     [Header("Sounds and UI")]
     public GameObject AmmoOutUI;
+    public AudioClip shootingSound;
+    public AudioClip reloadingSound;
+    public AudioSource audioSource;
 
     private void Awake()
     {
         transform.SetParent(hand);
         rifleUI.SetActive(true);
         presentAmmunition = maximumAmmunition;
-        
-    }
+/*        audioSource = GetComponent<AudioSource>();
+*/    }
 
 
     private void Update()
@@ -104,6 +107,7 @@ public class Rifle : MonoBehaviour
         AmmoCount.occurence.UpdateMagText(mag);
 
         muzzleSpark.Play();
+        audioSource.PlayOneShot(shootingSound);
         RaycastHit hitInfo;
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, shootingRange))
@@ -142,7 +146,7 @@ public class Rifle : MonoBehaviour
         setReloading = true;
         Debug.Log("Reloading...");
         animator.SetBool("Reloading", true);
-        //play reload sound
+        audioSource.PlayOneShot(reloadingSound);
         yield return new WaitForSeconds(reloadingTime);
         animator.SetBool("Reloading", false);
         presentAmmunition = maximumAmmunition;

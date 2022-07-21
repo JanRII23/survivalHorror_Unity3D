@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerDamage;
     public HealthBar healthBar;
 
+
     [Header("Player Script Cameras")]
     public Transform playerCamera;
     public GameObject EndGameMenuUI;

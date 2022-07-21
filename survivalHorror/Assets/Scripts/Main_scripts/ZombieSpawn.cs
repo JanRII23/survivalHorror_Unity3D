@@ -13,11 +13,16 @@ public class ZombieSpawn : MonoBehaviour
     public GameObject dangerZone1;
     private float repeatCycle = 1f;
 
+    [Header("Sounds")]
+    public AudioClip DangerZoneSound;
+    public AudioSource audioSource;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             InvokeRepeating("EnemySpawner", 1f, repeatCycle);
+            audioSource.PlayOneShot(DangerZoneSound);
             StartCoroutine(dangerZoneTimer());
             Destroy(gameObject, 10f);
             gameObject.GetComponent<BoxCollider>().enabled = false;
